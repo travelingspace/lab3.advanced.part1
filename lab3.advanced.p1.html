@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Random Color Generator</title>
+</head>
+<body>
+
+    <div id="swatch" style="width:600px;height:600px;background-color:#808080">
+
+    </div>
+    <button onclick="randomizeColor()">Generate Random Color!</button>
+    <br /><br />
+    <button onclick="addColor2Table()">Keep Color</button>
+
+    <table id="colors">
+        <thead>
+            <tr>
+                <th>hex #</th>
+                <th>color sample</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    
+
+    <script type="text/javascript">
+
+        //function that returns a random hex-color
+        function generateColor() {
+            var letters = '0123456789ABCDEF';
+            var color = '#';
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];//use math function with index of letters string to randomize the building of a hex color value
+            }
+            return color;
+        }
+
+        //function called by onclick of the button
+        function randomizeColor() {
+            document.getElementById("swatch").style.backgroundColor = generateColor();
+        }
+
+        
+        function addColor2Table() {
+            
+            var table = document.getElementById("colors");
+            var row = table.insertRow(0);
+
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+
+            // Add some text to the new cells:
+            cell1.innerHTML = document.getElementById("swatch").style.backgroundColor.toString();
+            cell2.style.backgroundColor = document.getElementById("swatch").style.backgroundColor;
+
+        }
+        
+    </script>
+
+</body>
+</html>
